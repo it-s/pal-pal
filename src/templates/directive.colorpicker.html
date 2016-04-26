@@ -1,0 +1,40 @@
+<div class="color-picker layout--box layout--center-in" ng-class="{'color-picker--light': isLight}">
+	<nav class="pure-menu pure-menu-horizontal pure-menu-centered">
+		<ul class="pure-menu-list">
+			<li class="pure-menu-item">
+				<a ng-model="tab" ui-toggle ui-toggle-link="#{{$id}}--RGB" class="pure-menu-link active" ui-group="rgb">RGB</a>
+			</li>
+			<li class="pure-menu-item">
+				<a ng-model="tab" ui-toggle ui-toggle-link="#{{$id}}--HSV" class="pure-menu-link" ui-group="hsv">HSV</a>
+			</li>
+		</ul>
+	</nav>
+	<form class="pure-form pure-form-stacked layout--hidde-inactive active" id="{{$id}}--RGB">
+		<div class="layout--flex-row">
+			<label>R:</label>
+			<ui-slider class="layout--flex-cell fill" ng-change="onRgbChanged()" min="0" max="255" ng-model="controls.rgb.r"></ui-slider>
+		</div>
+		<div class="layout--flex-row">
+			<label>G:</label>
+			<ui-slider class="layout--flex-cell fill" ng-change="onRgbChanged()" min="0" max="255" ng-model="controls.rgb.g"></ui-slider>
+		</div>
+		<div class="layout--flex-row">
+			<label>B:</label>
+			<ui-slider class="layout--flex-cell fill" ng-change="onRgbChanged()" min="0" max="255" ng-model="controls.rgb.b"></ui-slider>
+		</div>
+	</form>
+	<form class="pure-form pure-form-stacked layout--hidde-inactive" id="{{$id}}--HSV">
+		<div class="layout--flex-row">
+			<label>H:</label>
+			<ui-slider ng-change="onHsvChanged()" min="0" max="255" ng-model="controls.hsv.h"></ui-slider>
+		</div>
+		<div class="layout--flex-row">
+			<label>S:</label>
+			<ui-slider ng-change="onHsvChanged()" min="0" max="100" ng-model="controls.hsv.s"></ui-slider>
+		</div>
+		<div class="layout--flex-row">
+			<label>V:</label>
+			<ui-slider ng-change="onHsvChanged()" min="0" max="100" ng-model="controls.hsv.v"></ui-slider>
+		</div>
+	</form>
+</div>

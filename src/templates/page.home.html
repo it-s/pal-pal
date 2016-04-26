@@ -1,21 +1,23 @@
 <header ng-include="'templates/page.home.toolbar.html'" class="app-toolbar app-toolbar--primary"></header>
 <main class="layout--flex-cell fill layout--flex-column app-view">
 	<section class="palette pure-g layout--flex-cell fill">
-		<div class="swatch pure-u-1 pure-u-md-1-{{palette.length}}" ng-repeat="swatch in palette track by $index" style="background-color: {{swatch}}">
-			<form class="pure-form layout--box">
-				<fieldset>
-					<label>{{swatch}}</label>
-					<label>Remove swatch:</label>
-					<button class="pure-button" ng-click="remove($index)"></button>
-				</fieldset>
-			</form>
+		<div class="swatch pure-u-1 pure-u-md-1-{{palette.length}}" ng-repeat="swatch in palette track by $index" style="background-color: {{swatch}}; color: {{mostReadable(swatch)}}; fill: {{mostReadable(swatch)}}">
+			<div class="swatch--meta layout--box">
+				<h2 class="swatch--meta-name">{{swatch}}</h2>
+				<p class="swatch--meta-control">
+					<a ng-click="generateTriad($index)" ui-tooltip="Use this color as a base for triad palette generation">
+						<ui-icon class="layout--menu-icon" type="like"></ui-icon> x 3
+					</a> / <a ng-click="generateTetrad($index)" ui-tooltip="Use this color as a base for tetrad palette generation">
+						<ui-icon class="layout--menu-icon" type="like"></ui-icon> x 4
+					</a>
+				</p>
+				<p class="swatch--meta-control">
+					<a ng-click="remove($index)" ui-tooltip="Remove color swatch">
+						<ui-icon class="layout--menu-icon" type="close"></ui-icon>
+					</a>
+				</p>
+			</div>
+			<color-picker ng-model="palette[$index]"></color-picker>
 		</div>
-	</section>
-	<section class="editor pure-g layout--flex-cell pure-form pure-u-1">
-		<form class="pure-form layout--box" ng-submit="update()">
-			<fieldset>
-				<textarea ng-model="palette" editor></textarea>
-			</fieldset>
-		</form>
 	</section>
 </main>
