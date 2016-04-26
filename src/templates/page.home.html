@@ -1,0 +1,21 @@
+<header ng-include="'templates/page.home.toolbar.html'" class="app-toolbar app-toolbar--primary"></header>
+<main class="layout--flex-cell fill layout--flex-column app-view">
+	<section class="palette pure-g layout--flex-cell fill">
+		<div class="swatch pure-u-1 pure-u-md-1-{{palette.length}}" ng-repeat="swatch in palette track by $index" style="background-color: {{swatch}}">
+			<form class="pure-form layout--box">
+				<fieldset>
+					<label>{{swatch}}</label>
+					<label>Remove swatch:</label>
+					<button class="pure-button" ng-click="remove($index)"></button>
+				</fieldset>
+			</form>
+		</div>
+	</section>
+	<section class="editor pure-g layout--flex-cell pure-form pure-u-1">
+		<form class="pure-form layout--box" ng-submit="update()">
+			<fieldset>
+				<textarea ng-model="palette" editor></textarea>
+			</fieldset>
+		</form>
+	</section>
+</main>
