@@ -6,6 +6,7 @@
 
 angular.module('app', [
   'ngRoute',
+  'as.sortable',
   'com.likalo.ui'
 ])
  .constant('APP_META', {
@@ -25,11 +26,7 @@ angular.module('app', [
        * Setting up router
        */
       $routeProvider
-        .when('/', {
-          title: 'pal-pal',
-          description: 'A simple palette management tool.',
-          url: '#/',
-          icon: 'color-lens',
+        .when('/:sequence?', {
           templateUrl: 'templates/page.home.html',
           controller: 'HomeCtrl'
         })
