@@ -79,6 +79,7 @@ module.exports = function(grunt) {
                         './bower_components/angular-cookies/angular-cookies.js',
                         './bower_components/angular-resource/angular-resource.js',
                         './bower_components/angular-route/angular-route.js',
+                        './bower_components/ng-sortable/dist/ng-sortable.js',
                         './bower_components/UI/build/ui.js',
                         './bower_components/tinycolor/tinycolor.js'
                     ]
@@ -88,6 +89,7 @@ module.exports = function(grunt) {
                         './bower_components/pure/build/pure.css',
                         './bower_components/pure/build/grids-responsive.css',
                         './bower_components/pure/build/pure-theme.css',
+                        './bower_components/ng-sortable/dist/ng-sortable.css',
                         './bower_components/UI/build/ui.css'
                     ]
                 }]
@@ -249,6 +251,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
 	'clean',
         'rebuild',
+        'ngAnnotate',
 	'uglify',
 	'cssmin',
 	'svgstore',
