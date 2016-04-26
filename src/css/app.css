@@ -1,0 +1,22 @@
+.app-toolbar {
+	width: 100%;
+}
+.app-logo {
+	margin-right: -1em;
+}
+.app-logo .app-title--icon {
+	width: 2.5em;
+    height: 2.5em;
+    margin: -0.5em;
+}
+.palette {
+	align-items: stretch;
+    align-content: stretch;
+}
+.swatch {
+}
+.editor {
+}
+.editor textarea {
+	width: 100%;
+}
