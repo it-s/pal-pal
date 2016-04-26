@@ -1,0 +1,37 @@
+{
+	"folders":
+	[
+		{
+			"path": "~/GIT/pal-pal"
+		}
+	],
+    "build_systems":
+    [
+        {
+            "name": "pal-pal",
+            "working_dir": "~/GIT/pal-pal",
+		    "variants": [
+		        { 
+		        	"name": "Install",
+            		"cmd": ["grunt install"],
+		          "shell": true
+		        },
+		        { 
+		        	"name": "Development",
+            		"cmd": ["grunt rebuild"],
+		          "shell": true
+		        },
+		        {
+		        	"name": "Production",
+            		"cmd": ["grunt build"],
+		          "shell": true
+		        },
+		        {
+		        	"name": "Run",
+            		"cmd": ["http-server ./build"],
+		          "shell": true
+		        }
+		    ]
+        }
+    ]
+}
