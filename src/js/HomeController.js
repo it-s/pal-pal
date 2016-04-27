@@ -28,6 +28,12 @@ angular.module('app')
             function _generate(c, seq){
                 var color = (c && $colorSerice(c)) || $colorSerice.random();
                 switch(seq){
+                    case 'analogous':
+                        return color.analogous().map(function(t) { return t.toHexString(); });
+                    break;
+                    case 'monochromatic':
+                        return color.monochromatic().map(function(t) { return t.toHexString(); });
+                    break;
                     case 'tetrad':
                         return color.tetrad().map(function(t) { return t.toHexString(); });
                     break;
@@ -44,14 +50,22 @@ angular.module('app')
                 return $colorSerice.mostReadable(c, ["#444", "#999", "#fff"]).toHexString();
             }
 
-            $scope.add = function() {
+            $scope.add = function(hex) {
                 if($scope.palette.length > 5) return;
-                $scope.palette.push("#FFFFFF");
+                $scope.palette.push(hex || "#FFFFFF");
             }
 
             $scope.remove = function(index) {
                 if($scope.palette.length < 2) return;
                 $scope.palette.splice(index, 1);
+            }
+
+            $scope.generateAnalogous = function(index) {
+                $scope.palette = _generate($scope.palette[index], 'analogous');
+            }
+
+            $scope.generateMonochromatic = function(index) {
+                $scope.palette = _generate($scope.palette[index], 'monochromatic');
             }
 
             $scope.generateTriad = function(index) {
