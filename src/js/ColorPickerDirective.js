@@ -13,6 +13,10 @@ angular.module('app')
         		hsv.v = Math.floor(hsv.v*100);
         		return hsv
         	}
+            function normalizeHex(hex) {
+                if(!$colorSerice(hex).isValid()) return false;
+                return hex.indexOf("#") === 0? hex: "#" + hex;
+            }
             return {
                 require: 'ngModel',
                 scope: {},
@@ -30,27 +34,46 @@ angular.module('app')
                         $scope.controls = {
                             rgb: color.toRgb(),
                             hsv: normaliseHSV(color.toHsv()),
+                            hex: color.toHexString(),
                             name: color.toName()
                         }
-                		$scope.isLight = $scope.controls.hsv.v > 50;
+                		// $scope.isLight = $scope.controls.hsv.v > 50;
                     }
 
                     ngModel.$parsers.push(function(value) {
                         return value.toHexString();
                     })
 
+                    $scope.colornames = $colorSerice.names;
+
+                    $scope.onHexChanged = function(){
+                        var hex, color;
+                        hex = normalizeHex($scope.controls.hex);
+                        if(!hex) return;
+                        color = $colorSerice(hex);
+                        $scope.controls.rgb = color.toRgb();
+                        $scope.controls.hsv = normaliseHSV(color.toHsv());
+                        $scope.controls.name = color.toName();
+                        // $scope.isLight = $scope.controls.hsv.v > 50;
+                        ngModel.$setViewValue(color);
+                    }
+
                     $scope.onRgbChanged = function(){
                     	var color = $colorSerice($scope.controls.rgb);
                     	$scope.controls.hsv = normaliseHSV(color.toHsv());
-                		$scope.isLight = $scope.controls.hsv.v > 50;
-                    	ngModel.$setViewValue($colorSerice($scope.controls.rgb));
+                        $scope.controls.hex = color.toHexString();
+                        $scope.controls.name = color.toName();
+                		// $scope.isLight = $scope.controls.hsv.v > 50;
+                    	ngModel.$setViewValue(color);
                     }
 
                     $scope.onHsvChanged = function(){
                     	var color = $colorSerice($scope.controls.hsv);
                     	$scope.controls.rgb = color.toRgb();
-                		$scope.isLight = $scope.controls.hsv.v > 50;
-                    	ngModel.$setViewValue($colorSerice($scope.controls.hsv));
+                        $scope.controls.hex = color.toHexString();
+                        $scope.controls.name = color.toName();
+                		// $scope.isLight = $scope.controls.hsv.v > 50;
+                    	ngModel.$setViewValue(color);
                     }
 
                 }
