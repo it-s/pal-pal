@@ -12,7 +12,7 @@ angular.module('app', [
  .constant('APP_META', {
      title: 'pal-pal',
      description: 'A simple palette management tool.',
-     icon: 'color-lens'
+     icon: 'palette'
  })
  .constant('APP_API', {
      user: '/api/users'
