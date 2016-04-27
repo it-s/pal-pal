@@ -33,6 +33,10 @@ a {
 .swatch--meta a {
     color: inherit;
     fill: inherit;
+    display: inline-block;
+}
+.swatch--meta a:hover {
+    transform: scale(1.4);
 }
 
 .swatch--meta-name {
@@ -48,9 +52,9 @@ a {
 
 .color-picker {
     width: 100%;
+    padding: 2em;
     font-size: 70%;
     line-height: 1.4em;
-    background-color: #fff;
     position: absolute;
     box-sizing: border-box;
     bottom: 0;
@@ -71,6 +75,22 @@ a {
 .color-picker nav {
 	margin-bottom: 1em;
 }
+
+.color-picker a {
+	color: inherit;
+}
+.color-picker .pure-menu-link:hover{
+	background-color: inherit;
+}
+.color-picker input {
+	background-color: inherit;
+}
+.color-picker svg,
+.color-picker .UI-slider--knob {
+	fill: inherit;
+	stroke: inherit;
+}
+
 /*.color-picker.color-picker--light,
 .color-picker.color-picker--light .pure-menu-tabs .pure-menu-link  {
     color: rgba(0,0,0,0.5);	
