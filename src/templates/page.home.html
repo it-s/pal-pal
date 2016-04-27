@@ -6,18 +6,31 @@
 				<h2 class="swatch--meta-name">{{swatch}}</h2>
 				<p class="swatch--meta-control">
 					<a ng-click="generateTriad($index)" ui-tooltip="Use this color as a base for triad palette generation">
-						<ui-icon class="layout--menu-icon" type="like"></ui-icon> x 3
-					</a> / <a ng-click="generateTetrad($index)" ui-tooltip="Use this color as a base for tetrad palette generation">
-						<ui-icon class="layout--menu-icon" type="like"></ui-icon> x 4
+						<ui-icon class="layout--menu-icon" type="triad" style="transform: rotate(90deg);"></ui-icon>
+					</a> 
+				</p>
+				<p class="swatch--meta-control">
+					<a ng-click="generateTetrad($index)" ui-tooltip="Use this color as a base for tetrad palette generation">
+						<ui-icon class="layout--menu-icon" type="tetrad" style="transform: rotate(90deg);"></ui-icon>
+					</a>
+				</p>
+				<p class="swatch--meta-control">
+					<a ng-click="" ui-tooltip="Move color swatch">
+						<ui-icon class="layout--menu-icon" type="move"></ui-icon>
 					</a>
 				</p>
 				<p class="swatch--meta-control">
 					<a ng-click="remove($index)" ui-tooltip="Remove color swatch">
-						<ui-icon class="layout--menu-icon" type="close"></ui-icon>
+						<ui-icon class="layout--menu-icon" type="remove"></ui-icon>
 					</a>
 				</p>
 			</div>
 			<color-picker ng-model="palette[$index]"></color-picker>
 		</div>
 	</section>
+	<div class="UI-fab layout--position-at bottom right" ng-disabled="palette.length > 5" ui-tooltip="Add new swatch" tooltip-position="left">
+	   <button class="UI-fab--button UI-toggle" ng-click="add()">
+	    	<ui-icon class="layout--menu-icon" type="add"></ui-icon>
+	   </button>
+  	</div>
 </main>
