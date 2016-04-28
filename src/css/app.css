@@ -22,3 +22,8 @@ a {
 	align-items: stretch;
     align-content: stretch;
 }
+.app-view footer {
+    width: 100%;
+    font-size: 60%;
+    text-align: center;
+}
