@@ -1,0 +1,53 @@
+.color-picker {
+    width: 100%;
+    padding: 2em;
+    font-size: 70%;
+    line-height: 1.4em;
+    position: absolute;
+    box-sizing: border-box;
+    bottom: 0;
+}
+.color-picker,
+.swatch--meta-control {
+    transition: opacity 300ms;
+    opacity: 0;
+}
+.swatch:hover .color-picker,
+.swatch:hover .swatch--meta-control {
+	opacity: 0.4;
+}
+.swatch:hover .color-picker:hover,
+.swatch:hover .swatch--meta-control:hover {
+	opacity: 1;
+}
+.color-picker nav {
+	margin-bottom: 1em;
+}
+.color-picker .pure-menu-link {
+	color: inherit;
+	background: inherit;
+}
+.color-picker .pure-menu-link:hover {
+    color: inherit;
+    background: inherit;
+}
+.color-picker .pure-menu-link.active {
+    color: inherit;
+    background: inherit;
+    border: 1px solid;
+}
+.color-picker .pure-menu-link:hover{
+	background-color: inherit;
+}
+.color-picker input {
+	background-color: inherit;
+}
+.color-picker svg,
+.color-picker .UI-slider--knob {
+	fill: inherit;
+	stroke: inherit;
+}
+
+.color-picker--colorbit {
+	font-family: monospace;
+}
