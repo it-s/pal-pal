@@ -1,4 +1,4 @@
-<nav class="pure-menu pure-menu-horizontal layout--flex-cell layout--flex-row layout--menu-row">
+<nav class="pure-menu pure-menu-horizontal layout--flex-row layout--menu-row">
   <ul class="pure-menu-list layout--flex-cell fill">
     <li class="pure-menu-heading app-logo">
       <ui-icon class="app-title--icon" type="{{APP_META.icon}}"></ui-icon>
@@ -21,19 +21,20 @@
   <ul class="pure-menu-list">
     <li class="pure-menu-item" ng-disabled="palette.length > 5">
       <a ng-click="add()" class="pure-menu-link" ui-tooltip="Add new swatch, complementary to the last one">
-        <ui-icon class="layout--menu-icon" type="add"> </ui-icon>
+        <ui-icon class="layout--menu-icon" type="add"></ui-icon>
+        <label class="layout--menu-label">&nbsp;Swatch</label>
       </a>
     </li>
     <li class="pure-menu-item">
       <a ng-click="generateTriad()" class="pure-menu-link" ui-tooltip="Generate new random color triad">
-        <ui-icon class="layout--menu-icon" type="triad"> </ui-icon>
-        <label class="layout--menu-label">Triad</label>
+        <ui-icon class="layout--menu-icon" type="triad"></ui-icon>
+        <label class="layout--menu-label">&nbsp;Triad</label>
       </a>
     </li>
     <li class="pure-menu-item">
       <a ng-click="generateTetrad()" class="pure-menu-link" ui-tooltip="Generate new random color tetrad">
-        <ui-icon class="layout--menu-icon" type="tetrad"> </ui-icon>
-        <label class="layout--menu-label">Tetrad</label>
+        <ui-icon class="layout--menu-icon" type="tetrad"></ui-icon>
+        <label class="layout--menu-label">&nbsp;Tetrad</label>
       </a>
     </li>
   </ul>
