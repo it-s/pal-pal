@@ -13,9 +13,6 @@ angular.module('app', [
      description: 'A simple palette management tool.',
      icon: 'palette'
  })
- .constant('APP_API', {
-     user: '/api/users'
- })
  .config([
     '$routeProvider',
     '$locationProvider',
@@ -33,6 +30,9 @@ angular.module('app', [
           redirectTo: '/'
         });
 
+      /*
+       * Disable HTML5 aws it conflicts with SVG specs
+      */
       $locationProvider
         .html5Mode(false);
      
