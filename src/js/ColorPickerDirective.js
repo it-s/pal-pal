@@ -37,7 +37,6 @@ angular.module('app')
                             hex: color.toHexString(),
                             name: color.toName()
                         }
-                		// $scope.isLight = $scope.controls.hsv.v > 50;
                     }
 
                     ngModel.$parsers.push(function(value) {
@@ -54,7 +53,6 @@ angular.module('app')
                         $scope.controls.rgb = color.toRgb();
                         $scope.controls.hsv = normaliseHSV(color.toHsv());
                         $scope.controls.name = color.toName();
-                        // $scope.isLight = $scope.controls.hsv.v > 50;
                         ngModel.$setViewValue(color);
                     }
 
@@ -63,7 +61,6 @@ angular.module('app')
                     	$scope.controls.hsv = normaliseHSV(color.toHsv());
                         $scope.controls.hex = color.toHexString();
                         $scope.controls.name = color.toName();
-                		// $scope.isLight = $scope.controls.hsv.v > 50;
                     	ngModel.$setViewValue(color);
                     }
 
@@ -72,7 +69,6 @@ angular.module('app')
                     	$scope.controls.rgb = color.toRgb();
                         $scope.controls.hex = color.toHexString();
                         $scope.controls.name = color.toName();
-                		// $scope.isLight = $scope.controls.hsv.v > 50;
                     	ngModel.$setViewValue(color);
                     }
 
