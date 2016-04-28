@@ -5,8 +5,8 @@ module.exports = function(grunt) {
     // Load grunt tasks automatically
     // see: https://github.com/sindresorhus/load-grunt-tasks
     require('load-grunt-tasks')(grunt);
-    
-    var pathsConfig = function (appName) {
+
+    var pathsConfig = function(appName) {
 
         return {
             absolute: path.resolve(),
@@ -16,6 +16,7 @@ module.exports = function(grunt) {
             css: '/css',
             images: '/img',
             icons: '/icons',
+            favicons: '/favicons',
             fonts: '/fonts',
             templates: '/templates'
         };
@@ -75,13 +76,12 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     '<%= paths.build %>/lib.js': [
+                        './bower_components/tinycolor/tinycolor.js',
                         './bower_components/angular/angular.js',
                         './bower_components/angular-cookies/angular-cookies.js',
                         './bower_components/angular-resource/angular-resource.js',
                         './bower_components/angular-route/angular-route.js',
-                        './bower_components/ng-sortable/dist/ng-sortable.js',
-                        './bower_components/UI/build/ui.js',
-                        './bower_components/tinycolor/tinycolor.js'
+                        './bower_components/UI/build/ui.js'
                     ]
                 }, {
                     '<%= paths.build %>/lib.css': [
@@ -95,10 +95,10 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        
+
         // see: https://github.com/FWeinb/grunt-svgstore
         svgstore: {
-            default : {
+            default: {
                 options: {
                     inheritviewbox: true,
                     convertNameToId: function(name) {
@@ -110,8 +110,8 @@ module.exports = function(grunt) {
                         style: 'width:0;height:0'
                     },
                     cleanup: true,
-                    includedemo : true
-                },  
+                    includedemo: true
+                },
                 files: {
                     '<%= paths.build %><%= paths.icons %>/icons.svg': [
                         '<%= paths.source %>/**/*.svg'
@@ -119,7 +119,7 @@ module.exports = function(grunt) {
                 },
             }
         },
-        
+
         // -- Angular Annotate Config --------------------------------------------------------
         ngAnnotate: {
             options: {
@@ -127,13 +127,13 @@ module.exports = function(grunt) {
             },
             files: {
                 expand: true,
-                src   : [
+                src: [
                     '<%= paths.build %>/lib.js',
                     '<%= paths.build %>/app.js'
                 ]
             }
         },
-                
+
         // -- Copy Static Files ----------------------------------------------------------
         copy: {
             fonts: {
@@ -147,6 +147,12 @@ module.exports = function(grunt) {
                 cwd: '<%= paths.source %><%= paths.images %>/',
                 src: '**',
                 dest: '<%= paths.build %><%= paths.images %>/'
+            },
+            favicons: {
+                expand: true,
+                cwd: '<%= paths.source %><%= paths.favicons %>/',
+                src: '**',
+                dest: '<%= paths.build %>/'
             }
         },
 
@@ -177,8 +183,8 @@ module.exports = function(grunt) {
                     cwd: '<%= paths.source %>/',
                     src: 'index.html',
                     dest: '<%= paths.build %>/'
-                    
-                },{
+
+                }, {
                     expand: true,
                     cwd: '<%= paths.source %><%= paths.templates %>/',
                     src: '*.html',
@@ -186,20 +192,20 @@ module.exports = function(grunt) {
                 }]
             }
         },
-	
-	// -- Uglify Config --------------------------------------------------------
-	uglify: {
-	    options: {
-		sourceMap: true,
-		//banner: '/*! <%= appConfig.name %> <%= appConfig.version %> | <%= appConfig.author %> | <%= appConfig.license %> Licensed */'
-	    },
-	    files: {
-		expand: true,
+
+        // -- Uglify Config --------------------------------------------------------
+        uglify: {
+            options: {
+                sourceMap: true,
+                //banner: '/*! <%= appConfig.name %> <%= appConfig.version %> | <%= appConfig.author %> | <%= appConfig.license %> Licensed */'
+            },
+            files: {
+                expand: true,
                 src: '<%= paths.build %>/*.js',
                 ext: '-min.js'
-	    }
-	},
-        
+            }
+        },
+
         // see: https://npmjs.org/package/grunt-bg-shell
         bgShell: {
             install: {
@@ -234,33 +240,34 @@ module.exports = function(grunt) {
     grunt.registerTask('watch', [
         'watch'
     ]);
-    
+
     grunt.registerTask('install', [
         'bgShell:install'
     ]);
-    
+
     grunt.registerTask('rebuild', [
         'bgShell:build',
-	'clean:development',
+        'clean:development',
         'concat:js',
         'concat:css',
         'concat:deps',
         'htmlmin'
     ]);
-    
+
     grunt.registerTask('build', [
-	'clean',
+        'clean',
         'rebuild',
         'ngAnnotate',
-	'uglify',
-	'cssmin',
-	'svgstore',
+        'uglify',
+        'cssmin',
+        'svgstore',
         'copy:fonts',
         'copy:images',
+        'copy:favicons'
     ]);
 
     grunt.registerTask('default', [
         'install',
-	'build'
+        'build'
     ]);
 };
