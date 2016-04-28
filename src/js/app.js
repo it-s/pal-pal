@@ -6,7 +6,6 @@
 
 angular.module('app', [
   'ngRoute',
-  'as.sortable',
   'com.likalo.ui'
 ])
  .constant('APP_META', {
