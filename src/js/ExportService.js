@@ -28,7 +28,7 @@ angular.module('app')
                 function _export(pal) {
                     return {
                         string: pal.join(", "),
-                        url: $location.absUrl().replace($location.path(), "") + "#/" + pal.join("-").replace(/#/g, ""),
+                        url: $location.absUrl().split('#')[0] + "#/" + pal.join("-").replace(/#/g, ""),
                         json: angular.toJson(pal),
                         gimp: "",
                         ps: "",
