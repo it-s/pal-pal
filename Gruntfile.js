@@ -180,12 +180,6 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= paths.source %>/',
-                    src: 'index.html',
-                    dest: '<%= paths.build %>/'
-
-                }, {
-                    expand: true,
                     cwd: '<%= paths.source %><%= paths.templates %>/',
                     src: '*.html',
                     dest: '<%= paths.build %><%= paths.templates %>/'
