@@ -77,6 +77,18 @@ angular.module('app')
                 $scope.palette = _generate($scope.palette[index], 'tetrad');
             }
 
+            $scope.brightness = function(val) {
+                $scope.palette.forEach(function(color, index){
+                    $scope.palette[index] = val>0? tinycolor(color).lighten().toString() : tinycolor(color).darken().toString();
+                });
+            }
+
+            $scope.saturation = function(val) {
+                $scope.palette.forEach(function(color, index){
+                    $scope.palette[index] = val>0? tinycolor(color).saturate().toString() : tinycolor(color).desaturate().toString();
+                });
+            }
+
             $scope.share = function() {
                 var data = $exportSerice.export($scope.palette);
                 console.log(data.json);
