@@ -136,6 +136,12 @@ module.exports = function(grunt) {
 
         // -- Copy Static Files ----------------------------------------------------------
         copy: {
+            index: {
+                expand: true,
+                cwd: '<%= paths.source %>/',
+                src: 'index.html',
+                dest: '<%= paths.build %>/'
+            },
             fonts: {
                 expand: true,
                 cwd: '<%= paths.source %><%= paths.fonts %>/',
@@ -242,9 +248,7 @@ module.exports = function(grunt) {
     grunt.registerTask('rebuild', [
         'bgShell:build',
         'clean:development',
-        'concat:js',
-        'concat:css',
-        'concat:deps',
+        'concat',
         'htmlmin'
     ]);
 
@@ -255,9 +259,7 @@ module.exports = function(grunt) {
         'uglify',
         'cssmin',
         'svgstore',
-        'copy:fonts',
-        'copy:images',
-        'copy:favicons'
+        'copy'
     ]);
 
     grunt.registerTask('default', [
