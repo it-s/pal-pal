@@ -9,9 +9,10 @@ angular.module('app')
         '$scope',
         '$colorSerice',
         '$exportSerice',
+        '$importSerice',
         '$routeParams',
         'uiDialog',
-        function($scope, $colorSerice, $exportSerice, $routeParams, uiDialog) {
+        function($scope, $colorSerice, $exportSerice, $importSerice, $routeParams, uiDialog) {
 
             function _generate(c, seq) {
                 var color = (c && $colorSerice(c)) || $colorSerice.random();
@@ -39,7 +40,7 @@ angular.module('app')
                 array[index1] = array.splice(index2, 1, array[index1])[0];
             }
 
-            $scope.palette = $exportSerice.import($routeParams["sequence"]) || _generate();
+            $scope.palette = $importSerice($routeParams["sequence"]) || _generate();
 
             $scope.mostReadable = function(c) {
                 return $colorSerice.mostReadable(c, ["#444", "#999", "#fff"]).toHexString();
@@ -47,7 +48,7 @@ angular.module('app')
 
             $scope.add = function() {
                 if ($scope.palette.length > 5) return;
-                $scope.palette.push($colorSerice($scope.palette.slice(-1)[0]).complement().toHexString());
+                $scope.palette.push($colorSerice.random().toHexString());
             }
 
             $scope.moveLeft = function($index) {
@@ -89,10 +90,10 @@ angular.module('app')
                 });
             }
 
-            $scope.share = function() {
-                var data = $exportSerice.export($scope.palette);
+            $scope.export = function() {
+                var data = $exportSerice($scope.palette);
                 console.log(data.json);
-                uiDialog.modal('templates/modal.share.html', ['$scope', 'data',
+                uiDialog.modal('templates/modal.export.html', ['$scope', 'data',
                     function($scope, data) {
                         $scope.data = data;
                     }
