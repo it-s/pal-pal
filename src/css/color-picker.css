@@ -48,6 +48,11 @@
 	fill: inherit;
 	stroke: inherit;
 }
+.color-picker .pure-form input,
+.color-picker .pure-form input:focus,
+.color-picker .pure-form input:active {
+    border-color: inherit;
+}
 
 .color-picker--colorbit {
 	font-family: monospace;
