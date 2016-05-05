@@ -13,14 +13,14 @@
       </a>
     </li>
     <li class="pure-menu-item">
-      <a ng-click="share()" class="pure-menu-link" ui-tooltip="Share / save palette">
+      <a ng-click="export()" class="pure-menu-link" ui-tooltip="Export / save palette">
         <ui-icon class="layout--menu-icon" type="share"></ui-icon>
       </a>
     </li>
   </ul>
   <ul class="pure-menu-list">
     <li class="pure-menu-item" ng-disabled="palette.length > 5">
-      <a ng-click="add()" class="pure-menu-link" ui-tooltip="Add new swatch, complementary to the last one">
+      <a ng-click="add()" class="pure-menu-link" ui-tooltip="Add new random swatch">
         <ui-icon class="layout--menu-icon" type="add"></ui-icon>
         <label class="layout--menu-label">&nbsp;Swatch</label>
       </a>
