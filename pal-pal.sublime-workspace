@@ -31,6 +31,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/js/app.js",
+			"settings":
+			{
+				"buffer_size": 781,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/templates/modal.export.html",
+			"settings":
+			{
+				"buffer_size": 2015,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/templates/page.home.toolbar.html",
+			"settings":
+			{
+				"buffer_size": 1839,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "MiM",
 	"build_system_choices":
@@ -93,10 +117,31 @@
 	},
 	"expanded_folders":
 	[
-		"/home/eugene/GIT/pal-pal"
+		"/home/eugene/GIT/pal-pal",
+		"/home/eugene/GIT/pal-pal/src",
+		"/home/eugene/GIT/pal-pal/src/icons",
+		"/home/eugene/GIT/pal-pal/src/icons/logo",
+		"/home/eugene/GIT/pal-pal/src/js",
+		"/home/eugene/GIT/pal-pal/src/templates"
 	],
 	"file_history":
 	[
+		"/home/eugene/GIT/pal-pal/src/js/services/ExportService.js",
+		"/home/eugene/GIT/pal-pal/src/drawing.svg",
+		"/home/eugene/GIT/pal-pal/src/js/services/ImportService.js",
+		"/home/eugene/GIT/pal-pal/src/js/services/ColorService.js",
+		"/home/eugene/GIT/pal-pal/src/js/controllers/PageController.js",
+		"/home/eugene/GIT/pal-pal/src/js/controllers/HomeController.js",
+		"/home/eugene/GIT/pal-pal/src/js/common/Filters.js",
+		"/home/eugene/GIT/pal-pal/src/js/common/ColorPickerDirective.js",
+		"/home/eugene/GIT/pal-pal/src/index.html",
+		"/home/eugene/GIT/pal-pal/src/js/ColorService.js",
+		"/home/eugene/GIT/pal-pal/src/js/PageController.js",
+		"/home/eugene/GIT/pal-pal/src/js/ImportExportService.js",
+		"/home/eugene/GIT/pal-pal/src/js/HomeController.js",
+		"/home/eugene/GIT/pal-pal/src/js/Filters.js",
+		"/home/eugene/GIT/pal-pal/src/js/app.js",
+		"/home/eugene/GIT/pal-pal/src/js/ColorPickerDirective.js",
 		"/home/eugene/GIT/MiM/MiM/templates/partials/page.bentobox.social.html",
 		"/home/eugene/GIT/MiM/MiM/templates/partials/page.updates.html",
 		"/home/eugene/GIT/MiM/MiM/static.src/js/services/NotificationService.js",
@@ -190,6 +235,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" color=\"#000\"",
+			" overflow=\"visible\"",
+			"$colorSerice",
+			"$exportSerice",
+			"$colorSerice",
 			"_type",
 			"user",
 			".app-sidebar--menu-button",
@@ -215,6 +265,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
+			"$colorService",
 			"userModel"
 		],
 		"reverse": false,
@@ -226,8 +278,103 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 781,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/LAZY (Colorcoded).tmTheme",
+							"colorcode": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/templates/modal.export.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2015,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								823,
+								823
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/LAZY (Colorcoded).tmTheme",
+							"colorcode": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/templates/page.home.toolbar.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1839,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/LAZY (Colorcoded).tmTheme",
+							"colorcode": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
