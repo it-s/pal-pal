@@ -19,11 +19,11 @@
 			<div id="tabDesigners" class="layout--hidde-inactive active">
 				<div clss="pure-control-group">
 					<label>SVG:</label>
-					<a ng-href="{{data.svg.url}}" download="{{data.svg.filename}}">Download&nbsp;<ui-icon type="download"></ui-icon></a>
+					<a ng-href="#" ng-click="data.svg.get()">Download&nbsp;<ui-icon type="download"></ui-icon></a>
 				</div>
 				<div clss="pure-control-group">
 					<label>GIMP/Inkscape palette:</label>
-					<a ng-href="{{data.gimp.url}}" download="{{data.gimp.filename}}">Download&nbsp;<ui-icon type="download"></ui-icon></a>
+					<a ng-href="#" ng-click="data.gimp.get()">Download&nbsp;<ui-icon type="download"></ui-icon></a>
 				</div>
 			</div>
 			<div id="tabDevelopers" class="layout--hidde-inactive">

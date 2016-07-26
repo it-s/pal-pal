@@ -12,10 +12,10 @@ angular.module('app')
         function($location, $colorSerice, normalizeColorBitFilter) {
 
             var name,
-                svg_tag = "<svg height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\">",
-                svg_background = "<rect width=\"%s\" height=\"64\" fill=\"#fff\" />",
-                svg_swatch = "<rect width=\"24\" height=\"24\" x=\"%s\" y=\"48\" fill=\"%s\" />",
-                svg_text = "<text x=\"5\" y=\"50\" font-family=\"sans\" font-size=\"6\">%s</text>";
+                svg_tag = "<svg width=\"%s\" height=\"48\" xmlns=\"http://www.w3.org/2000/svg\">",
+                svg_background = "<rect width=\"%s\" x=\"0\" y=\"0\" height=\"48\" fill=\"#fff\" />",
+                svg_swatch = "<rect width=\"24\" height=\"24\" x=\"%s\" y=\"8\" fill=\"%s\" />",
+                svg_text = "<text x=\"5\" y=\"44\" font-family=\"sans\" font-size=\"4\">%s</text>";
 
 
             function _parse(str, args) {
@@ -29,12 +29,25 @@ angular.module('app')
                 return pal.join("-").replace(/#/g, "");
             }
 
-            function _file(data, name) {
+            function _file(data, name, mime_type) {
+                var blob = new Blob([data], {type: mime_type});
                 return {
                     filename: name,
-                    url: URL.createObjectURL(new Blob([data], {
-                        type: 'octet/stream'
-                    }))
+                    get: function() {
+                        var dlink = document.createElement('a');
+                        dlink.download = name;
+                        dlink.href = window.URL.createObjectURL(blob);
+                        dlink.onclick = function(e) {
+                            // revokeObjectURL needs a delay to work properly
+                            var that = this;
+                            setTimeout(function() {
+                                window.URL.revokeObjectURL(that.href);
+                            }, 1500);
+                        };
+
+                        dlink.click();
+                        dlink.remove();
+                    }
                 };
             }
 
@@ -44,15 +57,16 @@ angular.module('app')
 
             function _svg(pal) {
                 var length = pal.length,
-                    svg = svg_tag;
-                svg += _parse(svg_background, [(48 + 24 * length)]);
+                    width = 48 + 24 * length,
+                    svg = _parse(svg_tag, [width]);
+                svg += _parse(svg_background, [width]);
                 svg += pal.map(function(item, index) {
                     var rgb = $colorSerice(item).toRgb();
                     return _parse(svg_swatch, [(24 + index * 24), item]);
                 }).join("");
                 svg += _parse(svg_text, [_link(pal)]);
                 svg += "</svg>";
-                return _file(svg, name + ".svg");
+                return _file(svg, name + ".svg", 'image/svg+xml');
             }
 
             function _ps(pal) {
@@ -65,7 +79,7 @@ angular.module('app')
                     var rgb = $colorSerice(item).toRgb();
                     return _parse("%s %s %s %s", [rgb.r, rgb.g, rgb.b, item]);
                 }).join("\n");
-                return _file(gimp, name + ".gpl");
+                return _file(gimp, name + ".gpl", 'text/plain');
             }
 
             function _export(pal) {
