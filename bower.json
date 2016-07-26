@@ -1,7 +1,7 @@
 {
   "name": "pal-pal",
   "description": "A simple palette management tool.",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "license": "MIT",
   "authors": [
     "Eugene Trounev [it-s]"
