@@ -13,7 +13,7 @@ angular.module('app', [
  .constant('APP_META', {
      title: 'pal-pal',
      description: 'A simple palette management tool.',
-     icon: 'palette',
+     icon: 'logo',
      maxColors: 11
  })
  .config([
@@ -287,6 +287,13 @@ angular.module('app')
         'uiDialog',
         function(APP_META, $scope, $colorSerice, $exportSerice, $importSerice, $routeParams, uiDialog) {
 
+            function _merge(a, b) {
+                b.forEach(function(item){
+                    if(a.length <= APP_META.maxColors)
+                        a.push(item);
+                });
+            }
+
             function _generate(c, seq) {
                 var color = (c && $colorSerice(c)) || $colorSerice.random();
                 switch (seq) {
@@ -346,22 +353,36 @@ angular.module('app')
             }
 
             $scope.generateTriad = function(index) {
-                $scope.palette = _generate($scope.palette[index], 'triad');
+                var palette = _generate($scope.palette[index], 'triad');
+                if(isNaN(index))
+                    $scope.palette = palette;
+                else _merge($scope.palette,palette);
             }
 
             $scope.generateTetrad = function(index) {
-                $scope.palette = _generate($scope.palette[index], 'tetrad');
+                var palette = _generate($scope.palette[index], 'tetrad');
+                if(isNaN(index))
+                    $scope.palette = palette;
+                else _merge($scope.palette,palette);
             }
 
             $scope.brightness = function(val) {
                 $scope.palette.forEach(function(color, index){
-                    $scope.palette[index] = val>0? tinycolor(color).lighten().toString() : tinycolor(color).darken().toString();
+                    $scope.palette[index] = val>0? $colorSerice(color).lighten().toString() : $colorSerice(color).darken().toString();
                 });
             }
 
             $scope.saturation = function(val) {
                 $scope.palette.forEach(function(color, index){
-                    $scope.palette[index] = val>0? tinycolor(color).saturate().toString() : tinycolor(color).desaturate().toString();
+                    $scope.palette[index] = val>0? $colorSerice(color).saturate().toString() : $colorSerice(color).desaturate().toString();
+                });
+            }
+
+            $scope.sort = function() {
+                $scope.palette.sort(function(a,b){
+                    var _a = $colorSerice(a).toHsv(),
+                        _b = $colorSerice(b).toHsv();
+                    return _a.h < _b.h ? -1 : (_a.h > _b.h ? 1 : 0);
                 });
             }
 
