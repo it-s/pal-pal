@@ -34106,13 +34106,13 @@ function ngViewFillContentFactory($compile, $controller, $route) {
       //       tooltip = value;
       //     });
    },
-   controller: function($scope) {
+   controller: ['$scope', function($scope) {
     $scope['layers'] = [];
     $scope['layers'].push({type: 'base', src: $scope['type'] || "unknown"});
     if($scope['hover']) $scope['layers'].push({type: 'hover', src: $scope['hover']});
     if($scope['active']) $scope['layers'].push({type: 'active', src: $scope['active']});
     if($scope['overlay']) $scope['layers'].push({type: 'overlay', src: $scope['overlay']});
-   },
+   }],
    template: '<svg class="UI-icon UI-icon--{{type}}"><use xmlns:xlink="http://www.w3.org/1999/xlink" ng-repeat="layer in layers" class="UI-layer--{{layer.type}}" ui-icon-xlink-href="{{layer.src}}" xlink:href=""></use></svg>'
   };
  }])
@@ -34131,13 +34131,13 @@ function ngViewFillContentFactory($compile, $controller, $route) {
    scope: {
     text: "@"
    },
-   controller: function($scope) {
+   controller: ['$scope', function($scope) {
      $scope.text = $scope.text || "?";
      //Get just the firrst letter
      $scope.glyph = $scope.text.toLowerCase().substring(0, 2);
      $scope.accentColor = getColor($scope.text.charCodeAt(0)/$scope.text.length);
      $scope.backgroundColor = shadeColor2($scope.accentColor, 0.9);
-   },
+   }],
    template: '<svg class="UI-monogram UI-monogram--{{glyph}}" viewBox="0 0 24 24"><circle class="UI-monogram--base" cx="12" cy="12" r="10" style="fill:{{backgroundColor}};stroke:{{accentColor}}" /><text class="UI-monogram--glyph" x="12" y="16" font-family="sans" font-size="12" text-anchor="middle"  style="fill:{{accentColor}}">{{glyph}}</text></svg>'
   };
  }]);

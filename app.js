@@ -13,7 +13,8 @@ angular.module('app', [
  .constant('APP_META', {
      title: 'pal-pal',
      description: 'A simple palette management tool.',
-     icon: 'palette'
+     icon: 'palette',
+     maxColors: 11
  })
  .config([
     '$routeProvider',
@@ -232,13 +233,44 @@ angular.module('app')
  */
 
 angular.module('app')
-    .filter('normalizeColorBit', function() {
-            return function(number, pattern) {
-            	pattern = pattern || "000";
-                if (isNaN(parseFloat(number)) || !isFinite(number)) return pattern;
-                return ("000" + Math.floor(number)).slice(-3);
-            };
-        });;/**
+    .filter('normalizeColorBit', function () {
+        return function (number, pattern) {
+            pattern = pattern || "000";
+            if (isNaN(parseFloat(number)) || !isFinite(number)) return pattern;
+            return ("000" + Math.floor(number)).slice(-3);
+        };
+    })
+    .filter('removeSpaces', [function () {
+        return function (string) {
+            if (!angular.isString(string)) {
+                return string;
+            }
+            return string.replace(/[\s]/g, '');
+        };
+    }])
+    .filter('cut', function () {
+        return function (value, wordwise, max, tail) {
+            if (!value) return '';
+
+            max = parseInt(max, 10);
+            if (!max) return value;
+            if (value.length <= max) return value;
+
+            value = value.substr(0, max);
+            if (wordwise) {
+                var lastspace = value.lastIndexOf(' ');
+                if (lastspace != -1) {
+                    //Also remove . and , so its gives a cleaner result.
+                    if (value.charAt(lastspace - 1) == '.' || value.charAt(lastspace - 1) == ',') {
+                        lastspace = lastspace - 1;
+                    }
+                    value = value.substr(0, lastspace);
+                }
+            }
+
+            return value + (tail || ' …');
+        };
+    });;/**
  * Angular.js application controller
  *
  * @author eugene.trounev(a)gmail.com
@@ -246,13 +278,14 @@ angular.module('app')
 
 angular.module('app')
     .controller('HomeCtrl', [
+        'APP_META',
         '$scope',
         '$colorSerice',
         '$exportSerice',
         '$importSerice',
         '$routeParams',
         'uiDialog',
-        function($scope, $colorSerice, $exportSerice, $importSerice, $routeParams, uiDialog) {
+        function(APP_META, $scope, $colorSerice, $exportSerice, $importSerice, $routeParams, uiDialog) {
 
             function _generate(c, seq) {
                 var color = (c && $colorSerice(c)) || $colorSerice.random();
@@ -280,6 +313,8 @@ angular.module('app')
                 array[index1] = array.splice(index2, 1, array[index1])[0];
             }
 
+            $scope.maxColors = APP_META.maxColors;
+
             $scope.palette = $importSerice($routeParams["sequence"]) || _generate();
 
             $scope.mostReadable = function(c) {
@@ -287,7 +322,7 @@ angular.module('app')
             }
 
             $scope.add = function() {
-                if ($scope.palette.length > 5) return;
+                if ($scope.palette.length > APP_META.maxColors) return;
                 $scope.palette.push($colorSerice.random().toHexString());
             }
 
@@ -329,6 +364,10 @@ angular.module('app')
                     $scope.palette[index] = val>0? tinycolor(color).saturate().toString() : tinycolor(color).desaturate().toString();
                 });
             }
+
+            $scope.getRowLength = function() {
+                return Math.min($scope.palette.length, 6);
+            };
 
             $scope.export = function() {
                 var data = $exportSerice($scope.palette);
