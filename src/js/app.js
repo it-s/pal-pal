@@ -11,7 +11,7 @@ angular.module('app', [
  .constant('APP_META', {
      title: 'pal-pal',
      description: 'A simple palette management tool.',
-     icon: 'palette',
+     icon: 'logo',
      maxColors: 11
  })
  .config([
