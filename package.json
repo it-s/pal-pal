@@ -23,6 +23,10 @@
     "grunt-svgstore": "~1.0.0",
     "load-grunt-tasks": "~0.2.1"
   },
+  "scripts": {
+    "build": "grunt build",
+    "start": "cd build && http-server"
+  },
   "bugs": {
     "url": "https://github.com/it-s/pal-pal/issues"
   },

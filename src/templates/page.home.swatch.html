@@ -1,5 +1,11 @@
 <div class="swatch--meta layout--box">
-	<h2 class="swatch--meta-name">{{swatch}}</h2>
+	<h3 class="swatch--meta-name">
+		<a ng-click="moveLeft($index)" ui-tooltip="Move color swatch left" ng-disabled="$first">
+			<ui-icon class="layout--menu-icon" type="move-left"></ui-icon>
+		</a><span>{{swatch}}</span><a ng-click="moveRight($index)" ui-tooltip="Move color swatch right" ng-disabled="$last">
+			<ui-icon class="layout--menu-icon" type="move-right"></ui-icon>
+		</a>
+	</h3>
 	<p class="swatch--meta-control">
 		<a ng-click="generateTriad($index)" ui-tooltip="Use this color as a base for triad palette generation">
 			<ui-icon class="layout--menu-icon" type="triad" style="transform: rotate(90deg);"></ui-icon>
@@ -10,14 +16,8 @@
 			<ui-icon class="layout--menu-icon" type="tetrad" style="transform: rotate(90deg);"></ui-icon>
 		</a>
 	</p>
-	<p class="swatch--meta-control">
-		<a ng-click="moveLeft($index)" ui-tooltip="Move color swatch left" ng-disabled="$first">
-			<ui-icon class="layout--menu-icon" type="move-left"></ui-icon>
-		</a> 		
-		<a ng-click="moveRight($index)" ui-tooltip="Move color swatch right" ng-disabled="$last">
-			<ui-icon class="layout--menu-icon" type="move-right"></ui-icon>
-		</a>
-	</p>
+	<!--<p class="swatch--meta-control">
+	</p>-->
 	<a class="swatch--meta-control swatch--remove" ng-click="remove($index)" ui-tooltip="Remove color swatch">
 		<ui-icon class="layout--menu-icon" type="remove"></ui-icon>
 	</a>

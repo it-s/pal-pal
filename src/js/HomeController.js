@@ -6,13 +6,14 @@
 
 angular.module('app')
     .controller('HomeCtrl', [
+        'APP_META',
         '$scope',
         '$colorSerice',
         '$exportSerice',
         '$importSerice',
         '$routeParams',
         'uiDialog',
-        function($scope, $colorSerice, $exportSerice, $importSerice, $routeParams, uiDialog) {
+        function(APP_META, $scope, $colorSerice, $exportSerice, $importSerice, $routeParams, uiDialog) {
 
             function _generate(c, seq) {
                 var color = (c && $colorSerice(c)) || $colorSerice.random();
@@ -40,6 +41,8 @@ angular.module('app')
                 array[index1] = array.splice(index2, 1, array[index1])[0];
             }
 
+            $scope.maxColors = APP_META.maxColors;
+
             $scope.palette = $importSerice($routeParams["sequence"]) || _generate();
 
             $scope.mostReadable = function(c) {
@@ -47,7 +50,7 @@ angular.module('app')
             }
 
             $scope.add = function() {
-                if ($scope.palette.length > 5) return;
+                if ($scope.palette.length > APP_META.maxColors) return;
                 $scope.palette.push($colorSerice.random().toHexString());
             }
 
@@ -89,6 +92,10 @@ angular.module('app')
                     $scope.palette[index] = val>0? tinycolor(color).saturate().toString() : tinycolor(color).desaturate().toString();
                 });
             }
+
+            $scope.getRowLength = function() {
+                return Math.min($scope.palette.length, 6);
+            };
 
             $scope.export = function() {
                 var data = $exportSerice($scope.palette);
